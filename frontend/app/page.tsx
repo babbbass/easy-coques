@@ -1,4 +1,4 @@
-import CustomButton from "@/components/customButton"
+import { CustomButton } from "@/components/customButton"
 import { ListProducts } from "@/components/listProducts"
 import { VideoPlayer } from "@/components/videoPlayer"
 import { Icons } from "@/components/Icons"

@@ -2,8 +2,23 @@ import { Colors } from "@/components/Colors"
 import { Model } from "@/components/Model"
 import { PageContainer } from "@/components/PageContainer"
 import { PhotoSlider } from "@/components/PhotoSlider"
+import { Description } from "@/components/product/description"
+import { Quantity } from "@/components/quantity"
 import { Separator } from "@/components/separator"
-import { Star, GlobeLock, Truck, Handshake } from "lucide-react"
+import { GlobeLock, Truck, Handshake } from "lucide-react"
+
+const product = [
+  {
+    id: "iphone-14",
+    name: "iPhone 14",
+    price: 799,
+  },
+  {
+    id: "iphone-15",
+    name: "iPhone 15",
+    price: 799,
+  },
+]
 
 export default function Iphone() {
   return (
@@ -11,26 +26,12 @@ export default function Iphone() {
       <div className='flex w-full'>
         <PhotoSlider />
         <div className='flex flex-col flex-1 gap-2'>
-          <div className='font-bold text-4xl'>14,99€</div>
-
-          <p className='font-bold text-sm'>
-            Coque antichoc magnétique de luxe pour iPhone, coque de charge sans
-            fil Magsafe, armure translucide 256, 14, 13, 12, 11, 15 Pro Max Plus
-          </p>
-          <div className='flex gap-3 mt-4 items-center'>
-            <div className='flex gap-0.5'>
-              <Star className='h-4 w-4 text-sky-600 fill-sky-600' />
-              <Star className='h-4 w-4 text-sky-600 fill-sky-600' />
-              <Star className='h-4 w-4 text-sky-600 fill-sky-600' />
-              <Star className='h-4 w-4 text-sky-600 fill-sky-600' />
-              <Star className='h-4 w-4 text-sky-600 fill-sky-600' />
-            </div>
-            <div className='font-bold text-sm'>4.8</div>
-            <div className='text-sm'>53 Avis</div>
-          </div>
+          <Description />
           <Separator margin={4} />
           <Model />
           <Colors />
+          <Separator margin={4} />
+          <Quantity />
           <Separator margin={4} />
           <div className='flex gap-2 flex-col'>
             <h3 className='font-bold'>{`L'assurance EasyCoques`}</h3>

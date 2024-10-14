@@ -1,35 +1,24 @@
 "use client"
 import Image from "next/image"
-import React, { useState } from "react"
 import clsx from "clsx"
+import { useStoreSlider } from "@/stores/slider.store"
 
 export function PhotoSlider() {
-  const images = [
-    "/images/iphones/1.webp",
-    "/images/iphones/2.webp",
-    "/images/iphones/3.webp",
-    "/images/iphones/4.webp",
-    "/images/iphones/5.webp",
-    "/images/iphones/6.webp",
-  ]
-
-  // État pour suivre l'image actuellement sélectionnée
-  const [selectedImage, setSelectedImage] = useState(images[0])
+  const { grandView, setGrandView, sliderPresentation } = useStoreSlider()
 
   return (
     <div className='flex w-1/2 max-h-[460px] gap-4'>
-      {/* Images en miniatures, alignées verticalement */}
-      <div className='flex flex-col flex-wrap gap-2'>
-        {images.map((img, index) => (
+      <div className='flex flex-col overflow-y-hidden gap-2'>
+        {sliderPresentation.map((img, index) => (
           <Image
             width={70}
             height={10}
             key={index}
-            src={img}
+            src={`/images/iphones/${img.pictures}`}
             alt={`Thumbnail ${index + 1}`}
-            onClick={() => setSelectedImage(img)}
+            onClick={() => setGrandView(img)}
             className={clsx(`cursor-pointer rounded-2xl p-[1px]`, {
-              "border border-black": img === selectedImage,
+              "border border-black": img === grandView,
             })}
           />
         ))}
@@ -39,7 +28,7 @@ export function PhotoSlider() {
         <Image
           width={450}
           height={10}
-          src={selectedImage}
+          src={`/images/iphones/${grandView.pictures}`}
           alt='Selected'
           className='rounded-3xl'
         />
