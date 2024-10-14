@@ -1,16 +1,20 @@
 import React from "react"
 import { Button } from "./ui/button"
+import clsx from "clsx"
 
 type CustomButtonProps = {
   textButton: string
   verticalMargin?: number
   width?: number
+  className?: string
 }
 
-export default function CustomButton({
+export function CustomButton({
   textButton,
   verticalMargin = 10,
   width = 25,
+  className = "",
+  onClick,
 }: CustomButtonProps) {
   const marginYClasses = {
     4: "my-4",
@@ -31,7 +35,10 @@ export default function CustomButton({
   const widthButton = widthClasses[width]
   return (
     <Button
-      className={`bg-blue-600 ${marginY} ${widthButton} mx-auto rounded-full`}
+      className={clsx(
+        `bg-blue-600 ${marginY} ${widthButton} mx-auto rounded-full ${className}`
+      )}
+      onClick={onClick}
     >
       {textButton}
     </Button>
