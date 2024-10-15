@@ -16,8 +16,9 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "E-commerce",
-  description: "site e-commerce",
+  title: "Vente de coques pas cher | EasyCoques",
+  description:
+    "Découvrez notre gamme de coques à prix réduit. Livraison gratuite !",
 }
 
 export default function RootLayout({
