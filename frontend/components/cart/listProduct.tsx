@@ -1,14 +1,16 @@
+"use client"
 import React from "react"
 import { Separator } from "@/components/separator"
 import { Product } from "@/components/cart/product"
+import { useStoreCart } from "@/stores/cart.store"
 
-const products = [1, 2, 3]
 export function ListProduct() {
+  const { items } = useStoreCart()
   return (
-    <section className='flex flex-col gap-3'>
-      {products.map((product: number, index: number) => (
+    <section className='flex items-center justify-center flex-col gap-3 w-full'>
+      {items.map((product: any, index: number) => (
         <>
-          <Product key={index} />
+          <Product key={index} product={product} />
           <Separator margin={5} />
         </>
       ))}

@@ -15,9 +15,12 @@ export function Header() {
               </span>
             </Link>
           </div>
-          <div>
+          <div className='flex gap-4'>
             <Link href='/products/coques/iphone'>
               <span>nos coques</span>
+            </Link>
+            <Link href='/cart'>
+              <span>panier</span>
             </Link>
           </div>
           <div>

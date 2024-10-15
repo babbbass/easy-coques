@@ -4,11 +4,19 @@ import { CirclePlus, MinusCircle } from "lucide-react"
 import { CustomButton } from "@/components/customButton"
 import clsx from "clsx"
 import { useStoreCart } from "@/stores/cart.store"
+import { useProductStore } from "@/stores/product.store"
+//import { Products } from "@/types/product"
+
+// type QuantityProps = {
+//   product: Products
+// }
 
 export function Quantity() {
   const [quantity, setQuantity] = useState<number>(1)
-  const { products, addProduct } = useStoreCart()
-  console.log("products", products)
+  const { items, addItem } = useStoreCart()
+  const { product, color } = useProductStore()
+  console.log("product", product, quantity)
+  console.log("items", items)
   return (
     <section className='flex gap-2 flex-col mt-4 items-start'>
       <div className='flex gap-1 flex-col'>
@@ -38,7 +46,14 @@ export function Quantity() {
         />
         <CustomButton
           textButton='Ajouter au panier'
-          onClick={() => addProduct(products[0], quantity)}
+          onClick={() => {
+            const productToCard = {
+              ...product,
+              quantity: quantity,
+              color: color,
+            }
+            addItem(productToCard)
+          }}
           width={50}
           verticalMargin={4}
           className='h-10 bg-blue-600/30 text-blue-600 font-bold border hover:border-blue-600 hover:bg-slate-100 hover:text-blue-600 transition mx-0'
