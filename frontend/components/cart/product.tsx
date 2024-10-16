@@ -9,11 +9,14 @@ import {
 } from "@/components/ui/select"
 import { X } from "lucide-react"
 import { useStoreCart } from "@/stores/cart.store"
-
+import { ProductType } from "@/utils/types/types"
 import Image from "next/image"
 
-export function Product({ product }: any) {
-  console.log(product)
+type ProductProps = {
+  product: ProductType
+}
+
+export function Product({ product }: ProductProps) {
   const { removeItem } = useStoreCart()
 
   return (
@@ -23,7 +26,7 @@ export function Product({ product }: any) {
           src='/images/iphone.jpeg'
           width={200}
           height={300}
-          alt='iphone'
+          alt={product.name}
         />
       </div>
       <div className='flex flex-col flex-1 items-center font-semibold'>
@@ -48,14 +51,17 @@ export function Product({ product }: any) {
             </Select>
           </div>
           <div>{product.price}€</div>
-          <div>
+          <button
+            aria-label='Supprimer produit de votre panier'
+            className='flex items-start'
+          >
             <X
               className='w-4 h-4 text-slate-600/50 cursor-pointer'
               onClick={() => {
                 removeItem(product.id)
               }}
             />
-          </div>
+          </button>
         </div>
       </div>
     </div>

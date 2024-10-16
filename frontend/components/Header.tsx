@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import { Separator } from "./separator"
-import { ShoppingBag } from "lucide-react"
+import { ShoppingBagIcon } from "./cart/ShoppingBag"
 
 export function Header() {
   return (
@@ -23,9 +23,7 @@ export function Header() {
               <span>panier</span>
             </Link>
           </div>
-          <div>
-            <ShoppingBag className='cursor-pointer font-bold' />
-          </div>
+          <ShoppingBagIcon />
         </nav>
       </header>
       <Separator margin={5} />

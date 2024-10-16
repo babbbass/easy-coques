@@ -3,6 +3,8 @@ import { Button } from "./ui/button"
 import clsx from "clsx"
 
 type CustomButtonProps = {
+  ariaLabel?: string
+  onClick?: () => void
   textButton: string
   verticalMargin?: number
   width?: number

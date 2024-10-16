@@ -45,6 +45,7 @@ export function Quantity() {
           className='h-10 font-bold border border-blue-600 hover:bg-slate-100 hover:text-blue-600 mb-0 mx-0'
         />
         <CustomButton
+          aria-label='Ajouter au panier'
           textButton='Ajouter au panier'
           onClick={() => {
             const productToCard = {
