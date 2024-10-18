@@ -7,8 +7,8 @@ export function PhotoSlider() {
   const { grandView, setGrandView, sliderPresentation } = useStoreSlider()
 
   return (
-    <div className='flex flex-col-reverse lg:flex-row lg:max-h-[460px] gap-4 items-center '>
-      <div className='flex flex-row lg:flex-col h-full overflow-x-hidden gap-2 items-center w-full'>
+    <div className='flex flex-col-reverse lg:flex-row md:max-h-[470px] gap-4 items-center max-w-sm lg:max-w-[70%] md:mx-auto'>
+      <div className='flex flex-row lg:flex-col h-full overflow-hidden gap-2 items-center md:items-start w-auto scro'>
         {sliderPresentation.map((img, index) => (
           <Image
             width={70}

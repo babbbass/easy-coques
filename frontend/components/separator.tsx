@@ -1,6 +1,10 @@
 import React from "react"
 
-export function Separator({ margin = 10 }: { margin?: number }) {
+type SeparatorProps = {
+  margin?: number
+  className?: string
+}
+export function Separator({ margin = 10, className }: SeparatorProps) {
   const marginYClasses = {
     4: "my-4",
     5: "my-5",
@@ -12,6 +16,8 @@ export function Separator({ margin = 10 }: { margin?: number }) {
   const marginY = marginYClasses[margin] || "my-10"
 
   return (
-    <hr className={`w-full mx-auto ${marginY} border-gray-300 max-w-7xl`} />
+    <hr
+      className={`w-full mx-auto ${marginY} border-gray-300 max-w-7xl ${className}`}
+    />
   )
 }

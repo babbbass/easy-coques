@@ -5,6 +5,7 @@ import { CustomButton } from "@/components/customButton"
 import clsx from "clsx"
 import { useStoreCart } from "@/stores/cart.store"
 import { useProductStore } from "@/stores/product.store"
+import { useRouter } from "next/navigation"
 //import { Products } from "@/types/product"
 
 // type QuantityProps = {
@@ -12,13 +13,14 @@ import { useProductStore } from "@/stores/product.store"
 // }
 
 export function Quantity() {
+  const router = useRouter()
   const [quantity, setQuantity] = useState<number>(1)
-  const { items, addItem } = useStoreCart()
+  const { addItem } = useStoreCart()
   const { product, color } = useProductStore()
-  console.log("product", product, quantity)
-  console.log("items", items)
+  // console.log("product", product, quantity)
+  // console.log("items", items)
   return (
-    <section className='flex gap-2 flex-col mt-4 items-start'>
+    <section className='flex gap-2 flex-col mt-4 items-center md:items-start'>
       <div className='flex gap-1 flex-col'>
         <h4 className='font-bold'>Quantité</h4>
         <div className='flex gap-2'>
@@ -37,12 +39,21 @@ export function Quantity() {
           />
         </div>
       </div>
-      <div className='flex w-full items-start flex-col'>
+      <div className='flex w-full items-center md:items-start flex-col'>
         <CustomButton
           textButton='Acheter maintenant'
           width={50}
           verticalMargin={4}
           className='h-10 font-bold border border-blue-600 hover:bg-slate-100 hover:text-blue-600 mb-0 mx-0'
+          onClick={() => {
+            const productToCard = {
+              ...product,
+              quantity: quantity,
+              color: color,
+            }
+            addItem(productToCard)
+            router.push("/cart/paiement")
+          }}
         />
         <CustomButton
           aria-label='Ajouter au panier'

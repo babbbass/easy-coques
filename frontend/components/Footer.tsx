@@ -13,17 +13,17 @@ export function Footer() {
       mb-0 md:mb-6 max-w-7xl mx-auto'
       >
         <Newsletter />
-        <div className='flex justify-between text-xs'>
+        <div className='flex flex-col md:flex-row items-center gap-6 md:justify-between text-xs'>
           <Logo />
-          <div>
-            <ul className='flex flex-col  gap-4'>
+          <div className='flex justify-start w-full md:w-auto'>
+            <ul className='flex flex-col gap-4'>
               <li>Nous Contacter</li>
               <li>Termes et conditions</li>
               <li>Politiques de confidentialité</li>
             </ul>
           </div>
         </div>
-        <div className='text-center'>
+        <div className='text-center mt-2 md:mt-0'>
           <small>
             Copyright © 2024 MySite. Tous droits réservés. Realisé by{" "}
             <Link

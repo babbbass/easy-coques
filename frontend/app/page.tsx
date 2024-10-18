@@ -1,24 +1,25 @@
 import { CustomButton } from "@/components/customButton"
-import { ListProducts } from "@/components/listProducts"
+// import { ListProducts } from "@/components/listProducts"
 import { VideoPlayer } from "@/components/videoPlayer"
 import { Icons } from "@/components/Icons"
 import { Check, Star } from "lucide-react"
 import { PageContainer } from "@/components/PageContainer"
 import Image from "next/image"
-async function getProducts() {
-  const url = "http://localhost:1337/api/products"
-  try {
-    const response = await fetch(url)
-    if (!response.ok) {
-      throw new Error(`Response status: ${response.status}`)
-    }
+import Link from "next/link"
+// async function getProducts() {
+//   const url = "http://localhost:1337/api/products"
+//   try {
+//     const response = await fetch(url)
+//     if (!response.ok) {
+//       throw new Error(`Response status: ${response.status}`)
+//     }
 
-    const json = await response.json()
-    return json
-  } catch (error) {
-    console.error(error.message)
-  }
-}
+//     const json = await response.json()
+//     return json
+//   } catch (error) {
+//     console.error(error.message)
+//   }
+// }
 
 export default async function Home() {
   // const products = await getProducts()
@@ -113,17 +114,19 @@ export default async function Home() {
             </p>
           </div>
         </div>
-        <CustomButton
-          textButton='Commandez Maintenant'
-          width={33}
-          verticalMargin={4}
-          className='w-auto md:w-[33%]'
-        />
+        <Link href='/products/coques/iphone'>
+          <CustomButton
+            textButton='Commandez Maintenant'
+            width={33}
+            verticalMargin={4}
+            className='w-auto md:w-[33%]'
+          />
+        </Link>
         <VideoPlayer />
         {/* <CustomButton textButton='Commandez Maintenant' width={33} /> */}
         <section className='bg-slate-100 grainy-dark py-5 items-center'>
           {/* <MaxWidthWrapper className='flex flex-col items-center gap-16 sm:gap-32'> */}
-          <div className='flex flex-col lg:flex-row items-center gap-4  mb-8'>
+          <div className='flex flex-col lg:flex-row items-center gap-4 mb-8'>
             <h2 className='order-1 mt-2 w-full tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900'>
               Ce que disent
               <span className='relative px-2'>
