@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { X } from "lucide-react"
+import { Trash2 } from "lucide-react"
 import { useStoreCart } from "@/stores/cart.store"
 import { ProductType } from "@/utils/types/types"
 import Image from "next/image"
@@ -20,8 +20,8 @@ export function Product({ product }: ProductProps) {
   const { removeItem } = useStoreCart()
 
   return (
-    <div className='w-3/4 flex min-h-[200px] gap-4 '>
-      <div className='w-1/4 flex items-center justify-center'>
+    <div className='w-full md:w-3/4 flex md:min-h-[200px] gap-4'>
+      <div className='w-1/4 flex md:justify-center'>
         <Image
           src='/images/iphone.jpeg'
           width={200}
@@ -30,12 +30,12 @@ export function Product({ product }: ProductProps) {
         />
       </div>
       <div className='flex flex-col flex-1 items-center font-semibold'>
-        <div className='flex gap-4 w-full min-h-20 pt-2'>
+        <div className='flex gap-4 w-full min-h-20'>
           <div className='w-4/6'>
-            <h3 className='text-xl text-blue-600'>{product.name}</h3>
+            <h3 className='text-sm md:text-xl text-blue-600'>{product.name}</h3>
             <p className='text-sm text-black/70'>{product?.color}</p>
           </div>
-          <div className='w-2/6'>
+          <div className='w-2/6 pt-1'>
             <Select>
               <SelectTrigger className='w-14 h-1 border-0 rounded-none'>
                 <SelectValue
@@ -55,8 +55,8 @@ export function Product({ product }: ProductProps) {
             aria-label='Supprimer produit de votre panier'
             className='flex items-start'
           >
-            <X
-              className='w-4 h-4 text-slate-600/50 cursor-pointer'
+            <Trash2
+              className='w-4 h-4 md:w-5 md:h-4 text-gray-600/70 cursor-pointer pt-1'
               onClick={() => {
                 removeItem(product.id)
               }}

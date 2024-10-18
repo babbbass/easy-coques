@@ -7,11 +7,11 @@ import { useStoreCart } from "@/stores/cart.store"
 export function ListProduct() {
   const { items } = useStoreCart()
   return (
-    <section className='flex items-center justify-center flex-col gap-3 w-full'>
+    <section className='flex items-center justify-center flex-col w-full'>
       {items.map((product: any, index: number) => (
         <>
           <Product key={index} product={product} />
-          <Separator margin={5} />
+          <Separator margin={4} />
         </>
       ))}
     </section>
