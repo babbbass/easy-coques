@@ -20,7 +20,7 @@ export function CustomButton({
   className = "",
   onClick,
 }: CustomButtonProps) {
-  const marginYClasses = {
+  const marginYClasses: { [key: number]: string } = {
     4: "my-4",
     5: "my-5",
     8: "my-8",
@@ -28,7 +28,7 @@ export function CustomButton({
     20: "my-20",
   }
 
-  const widthClasses = {
+  const widthClasses: { [key: number | string]: string } = {
     25: "w-1/4",
     33: "w-1/3",
     50: "w-1/2",
@@ -36,7 +36,7 @@ export function CustomButton({
   }
 
   const marginY = marginYClasses[verticalMargin] || "my-10"
-  const widthButton = widthClasses[width]
+  const widthButton = widthClasses[width] || "w-auto"
   return (
     <Button
       type={type}

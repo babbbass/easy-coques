@@ -9,7 +9,8 @@ import {
 
 import { Input } from "@/components/ui/input"
 
-export function CreditCard({ form }) {
+//eslint-disable-next-line
+export function CreditCard({ form }: { form: any }) {
   return (
     <div className='flex flex-col gap-2 h-40 pt-5'>
       <div className='flex gap-4'>

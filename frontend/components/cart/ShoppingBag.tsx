@@ -5,7 +5,6 @@ import { useStoreCart } from "@/stores/cart.store"
 export function ShoppingBagIcon({ className }: { className?: string }) {
   const { items } = useStoreCart()
   const displayCount = items.length > 0 ? true : false
-  console.log("displayCount", className)
 
   return (
     <div className='relative'>

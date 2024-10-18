@@ -5,7 +5,7 @@ type SeparatorProps = {
   className?: string
 }
 export function Separator({ margin = 10, className }: SeparatorProps) {
-  const marginYClasses = {
+  const marginYClasses: { [key: number]: string } = {
     4: "my-4",
     5: "my-5",
     8: "my-8",

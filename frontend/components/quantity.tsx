@@ -17,8 +17,12 @@ export function Quantity() {
   const [quantity, setQuantity] = useState<number>(1)
   const { addItem } = useStoreCart()
   const { product, color } = useProductStore()
-  // console.log("product", product, quantity)
-  // console.log("items", items)
+  const productToCard = {
+    ...product,
+    quantity: quantity,
+    color: color,
+    id: product.id,
+  }
   return (
     <section className='flex gap-2 flex-col mt-4 items-center md:items-start'>
       <div className='flex gap-1 flex-col'>
@@ -46,11 +50,6 @@ export function Quantity() {
           verticalMargin={4}
           className='h-10 font-bold border border-blue-600 hover:bg-slate-100 hover:text-blue-600 mb-0 mx-0'
           onClick={() => {
-            const productToCard = {
-              ...product,
-              quantity: quantity,
-              color: color,
-            }
             addItem(productToCard)
             router.push("/cart/paiement")
           }}
@@ -59,11 +58,6 @@ export function Quantity() {
           aria-label='Ajouter au panier'
           textButton='Ajouter au panier'
           onClick={() => {
-            const productToCard = {
-              ...product,
-              quantity: quantity,
-              color: color,
-            }
             addItem(productToCard)
           }}
           width={50}

@@ -5,7 +5,7 @@ type Product = {
   name: string
   price: number
   quantity: number
-  color?: string
+  color: string
 }
 
 export type CartStoreProps = {

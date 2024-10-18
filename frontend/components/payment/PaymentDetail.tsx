@@ -5,7 +5,8 @@ import clsx from "clsx"
 import { CreditCardIcon } from "lucide-react"
 import { GooglePay } from "./GooglePay"
 
-export function PaymentDetail({ form }) {
+//eslint-disable-next-line
+export function PaymentDetail({ form }: { form: any }) {
   const [paymentMethod, setPaymentMethod] = useState<string>("card")
   const handleButtonClick = (value: string) => {
     setPaymentMethod(value)

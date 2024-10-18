@@ -1,7 +1,7 @@
 "use client"
 import clsx from "clsx"
 import React, { useState } from "react"
-import { ProductType } from "@/types/types"
+import { ProductType } from "@/utils/types/types"
 import { useProductStore } from "@/stores/product.store"
 import { Colors } from "@/components/Colors"
 

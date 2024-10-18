@@ -1,5 +1,5 @@
 import { create } from "zustand"
-import { ProductType } from "@/types/types"
+import { ProductType } from "@/utils/types/types"
 
 const listProduct = [
   {
@@ -50,7 +50,7 @@ const colors = [
 
 type ProductStore = {
   products: ProductType[]
-  product: ProductType | null
+  product: ProductType
   color: string
   setProduct: (product: ProductType) => void
   addColor: (color: string) => void
