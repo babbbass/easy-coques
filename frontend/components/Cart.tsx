@@ -1,7 +1,8 @@
 "use client"
 import React from "react"
-import { Button } from "./ui/button"
 import { useStoreCart } from "@/stores/cart.store"
+import { CustomButton } from "./customButton"
+import Link from "next/link"
 
 export function Cart() {
   const { getTotalPrice } = useStoreCart()
@@ -11,9 +12,14 @@ export function Cart() {
         <h1 className='text-3xl'>
           Le montant de vos achats est de {getTotalPrice()} €.
         </h1>
-        <Button className='bg-blue-600 w-[40%] mx-auto'>
-          Valider la commande
-        </Button>
+        <Link href='/cart/paiement' className='text-center'>
+          <CustomButton
+            textButton='Valider la commande'
+            width={50}
+            ariaLabel='Valider la commande'
+            className='my-1'
+          />
+        </Link>
       </section>
     </>
   )

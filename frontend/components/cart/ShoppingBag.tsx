@@ -6,7 +6,6 @@ export function ShoppingBagIcon() {
   const { items } = useStoreCart()
   const displayCount = items.length > 0 ? true : false
 
-  console.log("items", items)
   return (
     <div className='relative'>
       <ShoppingBag className='cursor-pointer font-bold' />
