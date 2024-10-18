@@ -2,19 +2,19 @@ import React from "react"
 import Link from "next/link"
 import { Newsletter } from "./newsletter"
 import { Separator } from "./separator"
+import { Logo } from "@/components/Logo"
 
 export function Footer() {
   return (
     <>
       <Separator />
-      <footer className='flex flex-col w-full gap-6 mt-4 justify-between p-4 mb-6 max-w-7xl mx-auto'>
+      <footer
+        className='flex flex-col w-full gap-6 mt-4 justify-between px-2 
+      mb-0 md:mb-6 max-w-7xl mx-auto'
+      >
         <Newsletter />
         <div className='flex justify-between text-xs'>
-          <div>
-            <span className='text-2xl font-bold'>
-              Easy<span className='text-blue-600'>Coques</span>
-            </span>
-          </div>
+          <Logo />
           <div>
             <ul className='flex flex-col  gap-4'>
               <li>Nous Contacter</li>

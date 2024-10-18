@@ -7,8 +7,8 @@ export function PhotoSlider() {
   const { grandView, setGrandView, sliderPresentation } = useStoreSlider()
 
   return (
-    <div className='flex w-1/2 max-h-[460px] gap-4'>
-      <div className='flex flex-col overflow-y-hidden gap-2'>
+    <div className='flex flex-col-reverse lg:flex-row lg:max-h-[460px] gap-4 items-center '>
+      <div className='flex flex-row lg:flex-col h-full overflow-x-hidden gap-2 items-center w-full'>
         {sliderPresentation.map((img, index) => (
           <Image
             width={70}
@@ -18,7 +18,7 @@ export function PhotoSlider() {
             alt={`Thumbnail ${index + 1}`}
             onClick={() => setGrandView(img)}
             className={clsx(`cursor-pointer rounded-2xl p-[1px]`, {
-              "border border-black": img === grandView,
+              "border border-black": img.name === grandView.name,
             })}
           />
         ))}

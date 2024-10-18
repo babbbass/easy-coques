@@ -10,7 +10,7 @@ export function VideoPlayer() {
       loop
       muted
       autoPlay
-      className='h-96 my-10'
+      className='h-96 mt-5 md:mb-10'
     >
       <source src='/presentation.mp4' type='video/mp4' />
       <track

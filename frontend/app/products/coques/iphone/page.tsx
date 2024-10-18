@@ -7,7 +7,7 @@ import { Separator } from "@/components/separator"
 export default function Iphone() {
   return (
     <PageContainer>
-      <div className='flex w-full'>
+      <div className='flex w-full flex-col lg:flex-row gap-4'>
         <PhotoSlider />
         <div className='flex flex-col flex-1 gap-2'>
           <Product />

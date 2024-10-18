@@ -11,11 +11,11 @@ const iphones = [
 
 const productSliderPresentation = [
   { name: "Noir", pictures: "black.webp" },
-  { name: "1", pictures: "2.webp" },
-  { name: "1", pictures: "3.webp" },
-  { name: "1", pictures: "4.webp" },
-  { name: "1", pictures: "5.webp" },
-  { name: "1", pictures: "6.webp" },
+  { name: "2", pictures: "2.webp" },
+  { name: "3", pictures: "3.webp" },
+  { name: "4", pictures: "4.webp" },
+  { name: "5", pictures: "5.webp" },
+  { name: "6", pictures: "6.webp" },
   { name: "Bleu foncé", pictures: "dark-blue.webp" },
   { name: "Violet foncé", pictures: "dark-purple.webp" },
   { name: "Gris", pictures: "gray.webp" },

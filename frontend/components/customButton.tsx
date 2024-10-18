@@ -7,14 +7,16 @@ type CustomButtonProps = {
   onClick?: () => void
   textButton: string
   verticalMargin?: number
-  width?: number
+  width?: number | string
   className?: string
+  type?: "button" | "submit" | "reset"
 }
 
 export function CustomButton({
+  type = "button",
   textButton,
   verticalMargin = 10,
-  width = 25,
+  width = "auto",
   className = "",
   onClick,
 }: CustomButtonProps) {
@@ -37,8 +39,9 @@ export function CustomButton({
   const widthButton = widthClasses[width]
   return (
     <Button
+      type={type}
       className={clsx(
-        `bg-blue-600 ${marginY} ${widthButton} mx-auto rounded-full ${className}`
+        `bg-blue-600 border border-blue-600 text-white font-bold ${marginY} ${widthButton} mx-auto rounded-full ${className} hover:bg-blue-600/10 hover:text-blue-600 p-3`
       )}
       onClick={onClick}
     >
