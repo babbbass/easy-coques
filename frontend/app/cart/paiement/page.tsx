@@ -1,5 +1,5 @@
 import React from "react"
-import { PaymentForm } from "@/components/PaymentForm"
+import { PaymentForm } from "@/components/payment/PaymentForm"
 import { PageContainer } from "@/components/PageContainer"
 export default function Page() {
   return (

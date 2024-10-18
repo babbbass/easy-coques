@@ -11,9 +11,9 @@ export function PaymentDetail({ form }) {
     setPaymentMethod(value)
   }
   return (
-    <div className='flex flex-col gap-2'>
-      <h4 className='font-semibold'>Informations de paiement</h4>
-      <div className='flex gap-3 justify-around'>
+    <div className='flex flex-col gap-2 '>
+      <h4 className='font-semibold text-left'>Informations de paiement</h4>
+      <div className='flex gap-3 justify-around flex-wrap'>
         <div>
           <Button
             type='button'

@@ -12,8 +12,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { PaymentDetail } from "./payment/PaymentDetail"
-import { CustomButton } from "./customButton"
+import { PaymentDetail } from "@/components/payment/PaymentDetail"
+import { CustomButton } from "@/components/customButton"
 
 const formSchema = z.object({
   email: z.coerce.string().email().min(5, {
@@ -59,7 +59,7 @@ export function PaymentForm() {
       </h2>
 
       <div className='w-full flex gap-2 justify-center'>
-        <Card className=' border-t-1 border-t-slate-300 p-4 bg-transparent'>
+        <Card className='border-t-1 border-t-slate-300 p-4 bg-transparent w-min-[310px] sm:w-auto'>
           <CardContent className='p-0 '>
             <Form {...form}>
               <form
