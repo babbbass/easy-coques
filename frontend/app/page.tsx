@@ -43,7 +43,7 @@ export default async function Home() {
             pour une charge sans fil simplifiée.
           </p>
           <p>
-            Disponible pour tous les modèles : iPhone 11 à 16 Pro Max Plus 256.
+            Disponible pour tous les modèles : iPhone 11 à 15 Pro Max Plus 256.
             Achetez Maintenant et Offrez le Meilleur à Votre Smartphone !
           </p>
         </div>
