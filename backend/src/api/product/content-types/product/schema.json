@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "Product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,15 +16,23 @@
       "type": "string"
     },
     "description": {
-      "type": "blocks"
+      "type": "text"
+    },
+    "price": {
+      "type": "decimal"
     },
     "image": {
-      "allowedTypes": [
-        "images",
-        "files"
-      ],
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
     }
   }
 }
