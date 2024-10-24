@@ -7,29 +7,12 @@ import { PageContainer } from "@/components/PageContainer"
 import Link from "next/link"
 import { OverallReviews } from "@/components/Reviews/OverallReviews"
 import { Reviews } from "@/components/Reviews/Reviews"
-// async function getProducts() {
-//   const url = "http://localhost:1337/api/products"
-//   try {
-//     const response = await fetch(url)
-//     if (!response.ok) {
-//       throw new Error(`Response status: ${response.status}`)
-//     }
-
-//     const json = await response.json()
-//     return json
-//   } catch (error) {
-//     console.error(error.message)
-//   }
-// }
 
 export default async function Home() {
-  // const products = await getProducts()
   return (
     <PageContainer>
       <div className='flex flex-col w-full max-w-7xl mx-auto items-center justify-items-center min-h-screen md:p-6 font-[family-name:var(--font-geist-sans)]'>
-        <h1 className='text-xl md:text-4xl font-bold mb-10'>
-          Protégez votre téléphone avec Classe
-        </h1>
+        <h1 className='text-xl md:text-4xl font-bold mb-10'>EasyCoques</h1>
         {/* <ListProducts products={products.data} /> */}
         <div className='flex flex-col gap-4 w-full text-lg md:text-2xl leading-9'>
           <p className=''>
