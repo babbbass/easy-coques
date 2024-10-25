@@ -10,13 +10,13 @@ type Resource = {
     page: number
   }
 }
-export async function getProducts({
+export async function fetchStrapi({
   resourceName,
   sort,
   populate,
   fields,
   filters,
-  pagination = { pageSize: 100, page: 1 },
+  pagination, //= { pageSize: 100, page: 1 },
 }: Resource) {
   const urlParams = qs.stringify({
     fields,
@@ -26,7 +26,7 @@ export async function getProducts({
     pagination,
   })
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/${resourceName}?${urlParams}`
-
+  console.log("url", url)
   try {
     const response = await fetch(url, {
       method: "GET",
@@ -38,10 +38,41 @@ export async function getProducts({
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`)
     }
-    // console.log("response", response.json())
+
     const json = await response.json()
     return json
   } catch (error: unknown) {
+    // @ts-expect-error next-line
     console.error(error.message)
   }
+}
+
+export async function getProducts({
+  category,
+}: {
+  category: string | null | undefined
+}) {
+  const products = await fetchStrapi({
+    resourceName: "products",
+    sort: ["id:desc"],
+    populate: ["image"],
+    fields: ["id", "name", "description", "price", "slug"],
+    filters: category
+      ? {
+          categories: {
+            slug: { $eqi: category },
+          },
+        }
+      : {},
+  })
+  console.log("products", products)
+  return products
+}
+
+export async function getOneProduct({ slug }: { slug: string }) {
+  const product = await fetchStrapi({
+    resourceName: `products/${slug}`,
+  })
+
+  return product
 }

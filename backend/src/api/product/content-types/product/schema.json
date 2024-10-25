@@ -33,6 +33,12 @@
       "type": "uid",
       "targetField": "name",
       "required": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product-category.product-category",
+      "mappedBy": "products"
     }
   }
 }
