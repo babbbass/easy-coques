@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_lines",
+  "info": {
+    "singularName": "order-line",
+    "pluralName": "order-lines",
+    "displayName": "orderLine",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "quantity": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "order_lines"
+    },
+    "total_price": {
+      "type": "decimal"
+    }
+  }
+}
