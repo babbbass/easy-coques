@@ -2,7 +2,7 @@ import { Cart } from "@/components/Cart"
 import React from "react"
 import { Separator } from "@/components/separator"
 import { TotalOrder } from "@/components/totalOrder"
-import { ListProduct } from "@/components/cart/listProduct"
+import { ListProductCart } from "@/components/cart/ListProduct"
 import { PageContainer } from "@/components/PageContainer"
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
     <PageContainer>
       <Cart />
       <Separator />
-      <ListProduct />
+      <ListProductCart />
       <Separator />
       <TotalOrder />
     </PageContainer>

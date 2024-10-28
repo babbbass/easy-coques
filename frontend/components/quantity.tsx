@@ -4,27 +4,29 @@ import { CirclePlus, MinusCircle } from "lucide-react"
 import { CustomButton } from "@/components/customButton"
 import clsx from "clsx"
 import { useStoreCart } from "@/stores/cart.store"
-import { useProductStore } from "@/stores/product.store"
-import { useRouter } from "next/navigation"
+import { ProductType } from "@/utils/types/types"
+// import { useProductStore } from "@/stores/product.store"
+// import { useRouter } from "next/navigation"
 //import { Products } from "@/types/product"
 
 // type QuantityProps = {
 //   product: Products
 // }
 
-export function Quantity() {
-  const router = useRouter()
+export function Quantity({ product }: { product: ProductType }) {
+  // const router = useRouter()
   const [quantity, setQuantity] = useState<number>(1)
   const { addItem } = useStoreCart()
-  const { product, color } = useProductStore()
   const productToCard = {
     ...product,
     quantity: quantity,
-    color: color,
+    // color: color,
     id: product.id,
+    price: product.price * quantity,
+    priceUnit: product.price,
   }
   return (
-    <section className='flex gap-2 flex-col mt-4 items-center md:items-start'>
+    <section className='flex gap-2 flex-col mt-4 items-center'>
       <div className='flex gap-1 flex-col'>
         <h4 className='font-bold'>Quantité</h4>
         <div className='flex gap-2'>
@@ -43,8 +45,8 @@ export function Quantity() {
           />
         </div>
       </div>
-      <div className='flex w-full items-center md:items-start flex-col'>
-        <CustomButton
+      <div className='flex w-full items-center flex-col'>
+        {/* <CustomButton
           textButton='Acheter maintenant'
           width={50}
           verticalMargin={4}
@@ -53,14 +55,14 @@ export function Quantity() {
             addItem(productToCard)
             router.push("/cart/paiement")
           }}
-        />
+        /> */}
         <CustomButton
           aria-label='Ajouter au panier'
           textButton='Ajouter au panier'
           onClick={() => {
             addItem(productToCard)
           }}
-          width={50}
+          // width={50}
           verticalMargin={4}
           className='h-10 bg-blue-600/30 text-blue-600 font-bold border hover:border-blue-600 hover:bg-slate-100 hover:text-blue-600 transition mx-0'
         />

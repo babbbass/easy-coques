@@ -30,10 +30,11 @@ export function Header() {
             )}
           </div>
           <div
-            className={`flex pt-8 flex-1 flex-col px-2 w-full fixed top-0 left-0 h-screen md:h-full overflow-y-hidden bg-slate-50 shadow-lg z-10 transform transition-transform duration-300 ease-in-out 
+            className={`flex pt-8 flex-1 flex-col px-2 w-full fixed top-0 left-0 h-screen md:h-full   shadow-lg z-10 transform transition-transform duration-300 ease-in-out bg-slate-50
                       ${isOpen ? "translate-x-0" : "-translate-x-full"} 
                       md:static md:transform-none md:translate-x-0 md:flex md:gap-4 md:flex-row md:justify-end md:pt-0  md:shadow-none`}
           >
+            {/* Logo for smartphone */}
             <div className='flex md:hidden justify-between'>
               <Link
                 href='/'
@@ -50,13 +51,25 @@ export function Header() {
             </div>
 
             <Separator margin={4} className='md:hidden' />
-            <div className='flex flex-col md:flex-row gap-4 italic text-xl items-center mt-5 md:mt-0'>
-              <Link
-                href='/products/coques/iphone'
-                onClick={() => setIsOpen(false)}
-              >
-                <span>nos coques</span>
-              </Link>
+            <div className='flex flex-col flex-1 md:flex-row gap-4 italic text-xl items-center mt-5 md:mt-0 justify-start md:justify-between'>
+              <div className='flex flex-col md:flex-row gap-4 md:mx-auto'>
+                <Link
+                  href='/products/coques/iphone'
+                  onClick={() => setIsOpen(false)}
+                  className='hover:text-blue-600/90'
+                >
+                  <span>Nos coques</span>
+                </Link>
+                <Link
+                  href={{
+                    pathname: "/products/trainers",
+                  }}
+                  onClick={() => setIsOpen(false)}
+                  className=' hover:text-blue-600/90'
+                >
+                  <span>Nos trainers</span>
+                </Link>
+              </div>
               <Link
                 href='/cart'
                 onClick={() => setIsOpen(false)}

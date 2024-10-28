@@ -1,16 +1,20 @@
 import { create } from "zustand"
+import { ProductType } from "@/utils/types/types"
 
-type Product = {
-  id: string
-  name: string
-  price: number
-  quantity: number
-  color: string
-}
+// type Product = {
+//   id: string
+//   name: string
+//   price: number
+//   quantity: number
+//   color: string
+//   image?: {
+//     name: string
+//   }
+// }
 
 export type CartStoreProps = {
-  items: Product[]
-  addItem: (product: Product) => void
+  items: ProductType[]
+  addItem: (product: ProductType) => void
   removeItem: (itemId: string) => void
   clearCart: () => void
   getTotalPrice: () => number
