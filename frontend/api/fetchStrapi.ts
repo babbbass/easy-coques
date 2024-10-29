@@ -85,28 +85,35 @@ export async function getOneProduct({ slug }: { slug: string }) {
 }
 
 type orderLine = {
-  id: string
+  documentId: string
   quantity: number
   price: number
 }
 export async function createOrder(products: orderLine[]) {
+  console.log("createOrder", products)
+  const user = await getUser()
+  if (!user) {
+    console.log("createOrder", "user is null")
+    return
+  }
+
   const orderLines = await Promise.all(
     products.map(async (product) => {
       const orderLine = await createOrderLine({
-        id: product.id,
+        product: product.documentId,
         quantity: product.quantity,
         price: product.price,
       })
       return orderLine
     })
   )
-  console.log("order", orderLines)
+  console.log("createOrder --orderLines", orderLines)
   const order = await fetchStrapi({
     resourceName: `orders`,
     method: "POST",
     body: {
-      user: "1",
-      order_lines: orderLines.map((orderLine) => orderLine.id),
+      user: user.id,
+      order_lines: orderLines.map((orderLine) => orderLine.documentId),
       total_price: orderLines.reduce(
         (total, orderLine) => total + orderLine.total_price,
         0
@@ -115,28 +122,30 @@ export async function createOrder(products: orderLine[]) {
   })
 
   console.log("createOrder", order)
-  return order
+  if (!order) {
+    console.log("createOrder", "order is null")
+    return
+  }
+  redirect(`/cart/paiement`)
+  //return order
 }
 
 type OrderLine = {
-  id: string
+  product: string
   quantity: number
   price: number
 }
-export async function createOrderLine({ id, quantity, price }: OrderLine) {
-  // console.log("createOrderLine", 14, price, quantity)
+export async function createOrderLine({ product, quantity, price }: OrderLine) {
   const createOrderLine = await fetchStrapi({
     resourceName: `order-lines`,
     method: "POST",
     body: {
       quantity,
-      product: id,
+      product,
       total_price: price * quantity,
     },
   })
-  // console.log("createOrderLine", 16, createOrderLine)
   return createOrderLine.data
-  // return product
 }
 
 export async function registerUser(userData: UserRegisterType) {
@@ -204,17 +213,22 @@ export async function disconnectedUser(pathname: string) {
   // "use server"
   console.log("disconnectedUser")
   cookies().delete("user_connected")
-  redirect(pathname)
+  redirect(`${pathname}`)
 }
 
-export async function getUser(jwt: string) {
+export async function getUser() {
+  const cookieStore = cookies()
+  const userCookie = cookieStore.get("user_connected")
+
+  if (!userCookie) return null
   const user = await fetchStrapi({
     resourceName: `users/me`,
     fields: ["email", "username"],
-    authorizationToken: jwt,
+    authorizationToken: userCookie?.value,
   })
 
   return {
     username: user.username,
+    id: user.documentId,
   }
 }

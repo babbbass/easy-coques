@@ -4,7 +4,6 @@ import "./globals.css"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { Inter } from "next/font/google"
-import { cookies } from "next/headers"
 import { getUser } from "@/api/fetchStrapi"
 
 const geistSans = localFont({
@@ -34,12 +33,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const cookieStore = cookies()
-  const userCookie = cookieStore.get("user_connected")
+  const user = await getUser()
 
-  const user = userCookie ? await getUser(userCookie?.value) : null
-
-  console.log("userCookie", userCookie, user)
   return (
     <html lang='fr'>
       <body

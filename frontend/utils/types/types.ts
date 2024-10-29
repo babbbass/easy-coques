@@ -1,5 +1,6 @@
 export type ProductType = {
   id: string
+  documentId: string
   name: string
   description: string
   image: {

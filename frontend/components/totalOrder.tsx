@@ -4,11 +4,10 @@ import { Separator } from "./separator"
 import { CustomButton } from "@/components/customButton"
 import { useStoreCart } from "@/stores/cart.store"
 import { FREE_DELIVERY } from "@/utils/constants"
-import { useRouter } from "next/navigation"
+import { createOrder } from "@/api/fetchStrapi"
 
 export function TotalOrder() {
-  const router = useRouter()
-  const { getTotalPrice } = useStoreCart()
+  const { getTotalPrice, items } = useStoreCart()
   const [deliveryPrice] = useState(0)
   return (
     <section className='w-full flex justify-end'>
@@ -40,7 +39,9 @@ export function TotalOrder() {
             className='text-lg rounded-xl mt-8 !p-6 mx-0'
             textButton='Valider la commande'
             ariaLabel='Valider la commande'
-            onClick={() => router.push("/cart/paiement")}
+            onClick={() => {
+              createOrder(items)
+            }}
           />
         </div>
       </div>

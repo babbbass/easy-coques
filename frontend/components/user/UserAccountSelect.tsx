@@ -7,10 +7,12 @@ import {
 import { LogOut } from "lucide-react"
 import { disconnectedUser } from "@/api/fetchStrapi"
 import { usePathname, useRouter } from "next/navigation"
+import Link from "next/link"
 
 export function UserAccountSelect({ user }: { user: string | null }) {
   const router = useRouter()
   const pathname = usePathname()
+  console.log("user", pathname)
   return (
     <>
       {user ? (
@@ -23,12 +25,13 @@ export function UserAccountSelect({ user }: { user: string | null }) {
               Profil
             </SelectItem>
             <SelectItem value='settings' className='cursor-pointer'>
-              Paramètres
+              <Link href='/commandes'>Mes Commandes</Link>
             </SelectItem>
             <SelectItem
               value='logout'
               className='text-red-500 cursor-pointer'
               onClick={() => {
+                //@ts-ignore next-line
                 disconnectedUser(pathname)
               }}
             >
