@@ -6,10 +6,12 @@ import { ShoppingBagIcon } from "./cart/ShoppingBag"
 import { MenuIcon, XIcon } from "lucide-react"
 import { Logo } from "@/components/Logo"
 import { useStoreCart } from "@/stores/cart.store"
+import { UserAccountSelect } from "./user/UserAccountSelect"
 
-export function Header() {
+export function Header({ user }: { user: { username: string } | null }) {
   const [isOpen, setIsOpen] = useState(false)
   const { items } = useStoreCart()
+
   const displayCount = items.length > 0 ? true : false
   return (
     <>
@@ -51,7 +53,7 @@ export function Header() {
             </div>
 
             <Separator margin={4} className='md:hidden' />
-            <div className='flex flex-col flex-1 md:flex-row gap-4 italic text-xl items-center mt-5 md:mt-0 justify-start md:justify-between'>
+            <div className='flex flex-col flex-1 md:flex-row gap-1 italic text-xl items-center mt-5 md:mt-0 justify-start md:justify-between'>
               <div className='flex flex-col md:flex-row gap-4 md:mx-auto'>
                 <Link
                   href='/products/coques/iphone'
@@ -76,8 +78,9 @@ export function Header() {
                 className='flex'
               >
                 <span className='mr-2 md:hidden'>panier</span>
-                <ShoppingBagIcon />
+                <ShoppingBagIcon className='mr-1' />
               </Link>
+              <UserAccountSelect user={user ? user.username : null} />
             </div>
           </div>
         </nav>

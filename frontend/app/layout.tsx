@@ -4,6 +4,8 @@ import "./globals.css"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { Inter } from "next/font/google"
+import { cookies } from "next/headers"
+import { getUser } from "@/api/fetchStrapi"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -27,17 +29,23 @@ export const metadata: Metadata = {
     "Découvrez notre gamme de coques à prix réduit. Livraison gratuite !",
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const cookieStore = cookies()
+  const userCookie = cookieStore.get("user_connected")
+
+  const user = userCookie ? await getUser(userCookie?.value) : null
+
+  console.log("userCookie", userCookie, user)
   return (
     <html lang='fr'>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased flex-col items-center justify-center min-h-screen mx-auto p-2 md:px-5 gap-16 font-[family-name:var(--font-geist-sans)] bg-slate-50`}
       >
-        <Header />
+        <Header user={user} />
         {children}
         <Footer />
       </body>

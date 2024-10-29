@@ -1,9 +1,11 @@
 "use client"
+import Link from "next/link"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Card, CardContent } from "@/components/ui/card"
 import { useRouter } from "next/navigation"
+import { registerUser, ifUserExists } from "@/api/fetchStrapi"
 import {
   Form,
   FormControl,
@@ -14,48 +16,62 @@ import {
 import { Input } from "@/components/ui/input"
 import { PaymentDetail } from "@/components/payment/PaymentDetail"
 import { CustomButton } from "@/components/customButton"
+import { useUserStore } from "@/stores/user.store"
 
 const formSchema = z.object({
   email: z.coerce.string().email().min(5, {
     message: "Username must be at least 2 characters.",
   }),
-  username: z.string().min(3, {
+  firstName: z.string().min(3, {
     message: "Votre prénom doit avoir au moins 3 caractères.",
   }),
   name: z.string().min(3, {
     message: "Votre nom doit avoir au moins 3 caractères.",
   }),
-  address: z.string().min(3, {
-    message: "Votre rue doit avoir au moins 3 caractères.",
+  password: z.string().min(6, {
+    message: "Le mot de passe doit avoir au moins 6 caractères.",
   }),
-  postCode: z.string().min(5, {
-    message: "Votre code postal doit avoir au moins 5 caractères.",
-  }),
-  city: z.string().min(3, {
-    message: "Votre prénom doit avoir au moins 3 caractères.",
-  }),
+  // address: z.string().min(3, {
+  //   message: "Votre rue doit avoir au moins 3 caractères.",
+  // }),
+  // postCode: z.string().min(5, {
+  //   message: "Votre code postal doit avoir au moins 5 caractères.",
+  // }),
+  // city: z.string().min(3, {
+  //   message: "Votre prénom doit avoir au moins 3 caractères.",
+  // }),
 })
 export function PaymentForm() {
-  const router = useRouter()
-
+  // const router = useRouter()
+  const { setUser } = useUserStore()
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      firstName: "",
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    //console.log(values)
+    const user = await ifUserExists(values.email)
+    //console.log(user)
+    if (user) {
+      console.log("user exists")
+      return
+    }
+
+    const userCreated = await registerUser(values)
+
+    if (userCreated) {
+      setUser(userCreated)
+    }
   }
 
   return (
     <div className='bg-transparent flex flex-col gap-1 border-0 w-full'>
-      <h2 className='w-full text-center text-xl mb-6'>
+      <h2 className='w-full text-center text-xl mb-6 md:text-3xl'>
         {" "}
-        Vos informations de facturation
+        Créer un compte
       </h2>
 
       <div className='w-full flex gap-2 justify-center'>
@@ -83,7 +99,7 @@ export function PaymentForm() {
                 <div className='flex justify-between gap-4'>
                   <FormField
                     control={form.control}
-                    name='username'
+                    name='firstName'
                     render={({ field }) => (
                       <FormItem>
                         <FormControl>
@@ -105,8 +121,20 @@ export function PaymentForm() {
                       </FormItem>
                     )}
                   />
+                  <FormField
+                    control={form.control}
+                    name='password'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <Input placeholder='votre mot de passe' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name='address'
                   render={({ field }) => (
@@ -144,13 +172,13 @@ export function PaymentForm() {
                     )}
                   />
                 </div>
-                <PaymentDetail form={form} />
+                <PaymentDetail form={form} /> */}
 
                 <div className='w-full flex justify-end'>
                   <CustomButton
                     type='button'
                     textButton='Retour à mes achats'
-                    onClick={() => router.push("/")}
+                    // onClick={() => router.push("/")}
                     className='rounded-lg m-0 bg-slate-800 mr-2 w-fit border-slate-800'
                   />
                   <CustomButton
@@ -159,6 +187,15 @@ export function PaymentForm() {
                     className='rounded-lg m-0'
                   />
                 </div>
+                <p className='mt-5 text-right'>
+                  Déjà inscrit?{" "}
+                  <Link
+                    href={"/connexion"}
+                    className='text-blue-600 hover:underline font-semibold'
+                  >
+                    {`Se connecter`}{" "}
+                  </Link>
+                </p>
               </form>
             </Form>
           </CardContent>
